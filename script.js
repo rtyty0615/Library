@@ -2,7 +2,7 @@ const myLibrary = [
     {
         title: "Clean Code",
         author: "Robert C. Martin",
-        pages: 464,
+        page: 464,
         read: false
     },
 ];
@@ -32,18 +32,23 @@ function addBookToPage(){
         displayBook.id = book.id;
         const title = document.createElement("p");
         title.textContent = book.title;
+        title.classList.add("title");
         displayBook.appendChild(title);
         const author = document.createElement("p");
         author.textContent = book.author;
+        author.classList.add("author");
         displayBook.appendChild(author);
         const page = document.createElement("p");
         page.textContent = 'Pages: ' + book.page;
+        page.classList.add("page");
         displayBook.appendChild(page);
         const read = document.createElement("button");
         read.textContent = book.read;
+        read.classList.add("read");
         displayBook.appendChild(read);
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
+        deleteButton.classList.add("delete");
         displayBook.appendChild(deleteButton);
         container.appendChild(displayBook);
     }
@@ -51,3 +56,9 @@ function addBookToPage(){
 
 addBookToPage()
 
+
+const dialog = document.querySelector("dialog");
+const newBookBtn = document.querySelector('#newBook');
+newBookBtn.addEventListener('click', () => {
+    dialog.showModal();
+});

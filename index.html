@@ -8,8 +8,33 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div id="container">
+    <div id="header">
+        <button id="newBook">New Book</button>
+        <dialog>
+            <form method="post">
+                <P>Add a new book: </P>
+                <div>
+                    <label for="title">Title: </label>
+                    <input type="text" id="title" name="title">
+                </div>
+                <div>
+                    <label for="author">Author: </label>
+                    <input type="text" id="author" name="author">
+                </div>
+                <div>
+                    <label for="page">Pages: </label>
+                    <input type="number" id="page" name="page">
+                </div>
+                <div>
+                    <input type="checkbox" id="read" name="read" value="read">
+                    <label for="read">Read? </label>
+                </div>
+                <button type="submit">Submit</button>
 
+            </form>
+        </dialog>
+    </div>
+    <div id="container">
     </div> 
 </body>
 </html>
