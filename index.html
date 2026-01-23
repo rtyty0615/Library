@@ -9,27 +9,30 @@
 </head>
 <body>
     <div id="header">
-        <button id="newBook">New Book</button>
+        <button id="new-book">New Book</button>
         <dialog>
-            <form method="post">
+            <form method="dialog">
                 <P>Add a new book: </P>
                 <div>
                     <label for="title">Title: </label>
-                    <input type="text" id="title" name="title">
+                    <input required type="text" id="title" name="title">
                 </div>
                 <div>
                     <label for="author">Author: </label>
-                    <input type="text" id="author" name="author">
+                    <input required type="text" id="author" name="author">
                 </div>
                 <div>
                     <label for="page">Pages: </label>
-                    <input type="number" id="page" name="page">
+                    <input required type="number" id="page" name="page" min="1">
                 </div>
                 <div>
-                    <input type="checkbox" id="read" name="read" value="read">
                     <label for="read">Read? </label>
+                    <input type="checkbox" id="read" name="read" value="read">
                 </div>
-                <button type="submit">Submit</button>
+                <div>
+                    <button id="cancel-btn" type="button" value="cancel" formnovalidate>Cancel</button>
+                    <button id="submit-btn" type="submit">Submit</button>
+                </div>
 
             </form>
         </dialog>
