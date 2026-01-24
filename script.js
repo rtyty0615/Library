@@ -7,9 +7,7 @@ const myLibrary = [
     },
 ];
 
-const alreadyAdded = [
 
-]
 
 
 function Book(title, author, page, read) {
@@ -28,10 +26,14 @@ function addBookToLibrary(title, author, page, read) {
 addBookToLibrary('Founders at Work', 'Jessica Livingston', 506, true);
 addBookToLibrary('My Life and Work', 'Henry Ford', 439, true);
 
+
+
+const container = document.querySelector('#container');
+
 function addBookToPage(){
+    container.innerHTML = "";
+    let i = 0;
     for (const book of myLibrary){
-        if (!alreadyAdded.includes(book.id)) {
-        const container = document.querySelector('#container');
         const displayBook = document.createElement("div");
         displayBook.id = book.id;
         const title = document.createElement("p");
@@ -52,11 +54,10 @@ function addBookToPage(){
         displayBook.appendChild(read);
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
-        deleteButton.classList.add("delete");
+        deleteButton.dataset.index = i;
+        i++;
         displayBook.appendChild(deleteButton);
         container.appendChild(displayBook);  
-        alreadyAdded.push(book.id);
-        }
     }
 }
 addBookToPage()
@@ -86,7 +87,30 @@ submitForm.addEventListener("submit", () => {
 });
 
 const cancelBtn = document.querySelector('#cancel-btn');
-cancelBtn.addEventListener("click", ()=> {
+cancelBtn.addEventListener("click", () => {
     submitForm.reset();
     dialog.close();
 })
+
+
+
+
+container.addEventListener("click", (e) => {
+    if(e.target.hasAttribute('data-index')){
+        const indexToRemove = e.target.dataset.index; 
+        myLibrary.splice(indexToRemove, 1);
+        addBookToPage();
+    }
+})
+
+
+
+
+
+
+
+
+// examplArray = ['ray','2', 'banana']
+
+// console.log(examplArray)
+
