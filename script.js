@@ -30,6 +30,7 @@ function addBookToPage(){
     container.innerHTML = "";
     let i = 0;
     for (const book of myLibrary){
+        
         const displayBook = document.createElement("div");
         displayBook.id = book.id;
         const title = document.createElement("p");
@@ -45,16 +46,18 @@ function addBookToPage(){
         page.classList.add("page");
         displayBook.appendChild(page);
         const read = document.createElement("button");
-        read.textContent = book.read ? "Status: Read" : "Status: Not Read";
+        read.textContent = book.read ? "Status: Read" : "Status: Unread";
         // toggle
         read.classList.toggle("read", book.read);
         read.classList.add("toggle-btn");
-        displayBook.appendChild(read);
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
         deleteButton.dataset.index = i;
         i++;
-        displayBook.appendChild(deleteButton);
+        const div = document.createElement("div");
+        div.appendChild(read);
+        div.appendChild(deleteButton);
+        displayBook.appendChild(div);
         container.appendChild(displayBook);  
     }
 }
@@ -99,6 +102,6 @@ container.addEventListener("click", (e) => {
     if (e.target.classList.contains('toggle-btn')) {
         const readBtn = e.target;
         const isRead = readBtn.classList.toggle('read');
-        readBtn.textContent = isRead ? "Status: Read" : "Status: Not Read";
+        readBtn.textContent = isRead ? "Status: Read" : "Status: unread";
     }
 })
