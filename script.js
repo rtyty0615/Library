@@ -7,9 +7,6 @@ const myLibrary = [
     },
 ];
 
-
-
-
 function Book(title, author, page, read) {
     this.title = title;
     this.author = author;
@@ -25,7 +22,6 @@ function addBookToLibrary(title, author, page, read) {
 
 addBookToLibrary('Founders at Work', 'Jessica Livingston', 506, true);
 addBookToLibrary('My Life and Work', 'Henry Ford', 439, true);
-
 
 
 const container = document.querySelector('#container');
@@ -49,8 +45,10 @@ function addBookToPage(){
         page.classList.add("page");
         displayBook.appendChild(page);
         const read = document.createElement("button");
-        read.textContent = book.read;
-        read.classList.add("read");
+        read.textContent = book.read ? "Status: Read" : "Status: Not Read";
+        // toggle
+        read.classList.toggle("read", book.read);
+        read.classList.add("toggle-btn");
         displayBook.appendChild(read);
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
@@ -92,25 +90,15 @@ cancelBtn.addEventListener("click", () => {
     dialog.close();
 })
 
-
-
-
 container.addEventListener("click", (e) => {
     if(e.target.hasAttribute('data-index')){
         const indexToRemove = e.target.dataset.index; 
         myLibrary.splice(indexToRemove, 1);
         addBookToPage();
     }
+    if (e.target.classList.contains('toggle-btn')) {
+        const readBtn = e.target;
+        const isRead = readBtn.classList.toggle('read');
+        readBtn.textContent = isRead ? "Status: Read" : "Status: Not Read";
+    }
 })
-
-
-
-
-
-
-
-
-// examplArray = ['ray','2', 'banana']
-
-// console.log(examplArray)
-
