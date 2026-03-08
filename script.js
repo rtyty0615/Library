@@ -88,6 +88,40 @@ class Library {
             dialog.close();
         });
 
+        const titleValid = document.getElementById("title");
+        titleValid.addEventListener("invalid", () => {
+            if (titleValid.validity.valueMissing) {
+                titleValid.setCustomValidity("The title name must be filled!");
+            }
+        });
+        titleValid.addEventListener("input", () => {
+            titleValid.setCustomValidity("");
+        });
+
+        const authorValid = document.getElementById("author");
+        authorValid.addEventListener("invalid", () => {
+            if (authorValid.validity.valueMissing) {
+                authorValid.setCustomValidity("The author name must be filled!");
+            }
+        });
+        authorValid.addEventListener("input", () => {
+            authorValid.setCustomValidity("");
+        });
+
+        const pageValid = document.getElementById("page"); 
+        pageValid.addEventListener("input", () => {
+            pageValid.setCustomValidity("");
+            if (pageValid.validity.rangeUnderflow) {
+                pageValid.setCustomValidity("The page cannot be below 1!");
+            }
+            else if (pageValid.validity.valueMissing) {
+                pageValid.setCustomValidity("You must enter the number of pages!");
+            }
+            if (!pageValid.validity.valid) {
+                pageValid.reportValidity();
+            }
+        });
+
         const cancelBtn = document.querySelector('#cancel-btn');
         cancelBtn.addEventListener("click", () => {
             submitForm.reset();
